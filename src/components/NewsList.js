@@ -10,6 +10,9 @@ import {
 import Spinner from "./Spinner";
 import Error from "./Error";
 import NewsListItem from "./NewsListItem";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./style/news_list.css";
+import { toast } from "react-toastify";
 
 function NewsList() {
   const { newsLoadingStatus, filteredNews } = useSelector((state) => state);
@@ -27,10 +30,12 @@ function NewsList() {
   const onDelete = useCallback((id) => {
     request(`http://localhost:3001/news/${id}`, "DELETE")
       .then((data) => {
-        console.log(`A news deleted successfully!`);
         dispatch(newsDeleted(id));
+        toast.success("A news deleted successfully!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       })
-      .catch((error) => console.log(error));
+      .catch(() => dispatch(newsFetchingError()));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,19 +49,23 @@ function NewsList() {
     return arr.length === 0 ? (
       <h4>No news available!</h4>
     ) : (
-      arr
-        .map(({ id, ...props }) => {
-          return (
-            <NewsListItem key={id} {...props} onDelete={() => onDelete(id)} />
-          );
-        })
-        .reverse()
+      <TransitionGroup component="ul" className="todo-list">
+        {arr
+          .map(({ id, ...props }) => {
+            return (
+              <CSSTransition key={id} timeout={500} classNames="item">
+                <NewsListItem {...props} onDelete={() => onDelete(id)} />
+              </CSSTransition>
+            );
+          })
+          .reverse()}
+      </TransitionGroup>
     );
   };
 
   const element = renderNewsList(filteredNews);
 
-  return <ul>{element}</ul>;
+  return { ...element };
 }
 
 export default NewsList;

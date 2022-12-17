@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { newsCreated } from "../redux/actions";
 import useHttp from "../hook/useHttp";
 import { v4 } from "uuid";
+import { toast } from "react-toastify";
 
 function NewsAddForm() {
   const [name, setName] = useState("");
@@ -17,8 +18,10 @@ function NewsAddForm() {
     const newNews = { id: v4(), name, description, category };
     request(`http://localhost:3001/news`, "POST", JSON.stringify(newNews))
       .then(() => {
-        console.log(`A new news added successfully!`);
         dispatch(newsCreated(newNews));
+        toast.success("A new news added successfully!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       })
       .catch((error) => console.log(error));
 

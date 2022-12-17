@@ -43,16 +43,10 @@
       "category": "Hot News"
     },
     {
-      "id": "fca3abb8-af53-4144-abd8-70e075b590a0",
+      "id": "af565e19-6944-41a8-868f-2ce3be697372",
       "name": "World Cup 2022",
-      "description": "In the quarter final Corvatia destroyed Brazil and Morocco went out Portugal.",
-      "category": "Sport News"
-    },
-    {
-      "id": "749f80c2-ddb8-41ca-a97b-827737142133",
-      "name": "Plastic pollution treaty",
-      "description": "In March, the United Nations Environment Assembly passed a resolution to end plastic pollution - an agreement described by delegates as the most significant green accord since the 2015 Paris Climate conference.",
-      "category": "defaultValue"
+      "description": "vdgrd",
+      "category": ""
     }
   ],
   "filters": [
