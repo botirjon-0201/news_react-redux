@@ -1,0 +1,85 @@
+{
+  "news": [
+    {
+      "id": "0a63a745-00ba-43bb-afad-36b3d3b4f7f2",
+      "name": "About Telegram",
+      "description": "Aggressive Anti-Spam. Admins in groups of 200+ members can enable Aggressive Anti-Spam to unleash the full force of Telegram’s experienced anti-spam algorithms in their chat.",
+      "category": "Business News"
+    },
+    {
+      "id": "3116f489-ee8f-4bb5-b6d3-c3a92f38b15f",
+      "name": "About Facebook",
+      "description": "Irish regulators slapped Facebook parent Meta with a €265 million fine on Monday, the company's latest punishment for breaching strict European Union data privacy rules.",
+      "category": "Business News"
+    },
+    {
+      "id": "72dc2c37-2f96-4eec-9566-245924b5d814",
+      "name": "Qatar World Cup",
+      "description": "Morocco pulled off yet another World Cup shock, and it was Belgium's aging “Golden Generation” that took the hit this time.",
+      "category": "Sport News"
+    },
+    {
+      "id": "a4241a2e-691d-42d8-b125-8c1732533404",
+      "name": "Plastic pollution treaty",
+      "description": "In March, the United Nations Environment Assembly passed a resolution to end plastic pollution - an agreement described by delegates as the most significant green accord since the 2015 Paris Climate conference.",
+      "category": "Green News"
+    },
+    {
+      "id": "7df64e6b-f831-45e4-aee9-b71b73f4544a",
+      "name": "World Cup 2022",
+      "description": "Argentina and France will met in the final next Sunday, 18.12.2022 year. Corvatia and Morocco will play 3rd places.",
+      "category": "Sport News"
+    },
+    {
+      "id": "2715ef89-3d2a-412e-a8ba-cc69a9eb347a",
+      "name": "About Instagram",
+      "description": "We put people first, and value craft and simplicity in our work. Our teams inspire creativity around the world, helping over 1 billion people create and share. Join us!",
+      "category": "Business News"
+    },
+    {
+      "id": "34b419ba-5938-45a1-b797-fd32b004eaed",
+      "name": "Ukraine war",
+      "description": "Estonia's foreign minister has called on other European countries to double their defence expenditure because of the Russian war in Ukraine -- adding that his own country planned raise national defence spending to 3% of GDP.",
+      "category": "Hot News"
+    },
+    {
+      "id": "fca3abb8-af53-4144-abd8-70e075b590a0",
+      "name": "World Cup 2022",
+      "description": "In the quarter final Corvatia destroyed Brazil and Morocco went out Portugal.",
+      "category": "Sport News"
+    },
+    {
+      "id": "749f80c2-ddb8-41ca-a97b-827737142133",
+      "name": "Plastic pollution treaty",
+      "description": "In March, the United Nations Environment Assembly passed a resolution to end plastic pollution - an agreement described by delegates as the most significant green accord since the 2015 Paris Climate conference.",
+      "category": "defaultValue"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "All",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "Hot News",
+      "label": "Hot News",
+      "className": "btn-danger"
+    },
+    {
+      "name": "Sport News",
+      "label": "Sport News",
+      "className": "btn-primary"
+    },
+    {
+      "name": "Business News",
+      "label": "Business News",
+      "className": "btn-success"
+    },
+    {
+      "name": "Green News",
+      "label": "Green News",
+      "className": "btn-secondary"
+    }
+  ]
+}
