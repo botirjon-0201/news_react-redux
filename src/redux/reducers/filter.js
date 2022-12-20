@@ -2,10 +2,9 @@ const initialState = {
   filters: [],
   filterLoadingStatus: "sam",
   activeFilter: "all",
-  filteredNews: [],
 };
 
-const filters = (state = initialState, action) => {
+const filter = (state = initialState, action) => {
   switch (action.type) {
     case "FILTERS_FETCHING":
       return {
@@ -27,14 +26,10 @@ const filters = (state = initialState, action) => {
       return {
         ...state,
         activeFilter: action.payload,
-        filteredNews:
-          action.payload === "all"
-            ? state.news
-            : state.news.filter((item) => item.category === action.payload),
       };
     default:
       return state;
   }
 };
 
-export default filters;
+export default filter;

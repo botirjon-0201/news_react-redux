@@ -4,25 +4,17 @@ import useHttp from "../hook/useHttp";
 import Spinner from "./Spinner";
 import Error from "./Error";
 import classNames from "classnames";
-import {
-  filtersFetching,
-  filtersFetched,
-  filtersFetchingError,
-  activeFilterChanged,
-} from "../redux/actions";
+import { activeFilterChanged, fetchFilter } from "../redux/actions";
 
 function NewsFilter() {
   const { filters, filterLoadingStatus, activeFilter } = useSelector(
-    (state) => state
+    (state) => state.filter
   );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(filtersFetching());
-    request(`http://localhost:3001/filters`)
-      .then((data) => dispatch(filtersFetched(data)))
-      .catch(() => dispatch(filtersFetchingError()));
+    dispatch(fetchFilter(request));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

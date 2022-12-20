@@ -22,18 +22,14 @@ const news = (state = initialState, action) => {
         newsLoadingStatus: "error",
       };
     case "NEWS_CREATED":
-      const newCreatedNewsList = [...state.news, action.payload];
       return {
         ...state,
-        news: newCreatedNewsList,
+        news: [...state.news, action.payload],
       };
     case "NEWS_DELETED":
-      const newNewsList = state.news.filter(
-        (item) => item.id !== action.payload
-      );
       return {
         ...state,
-        news: newNewsList,
+        news: state.news.filter((item) => item.id !== action.payload),
       };
     default:
       return state;

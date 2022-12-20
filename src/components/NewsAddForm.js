@@ -1,30 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { newsCreated } from "../redux/actions";
+import { fetchSubmit } from "../redux/actions";
 import useHttp from "../hook/useHttp";
 import { v4 } from "uuid";
-import { toast } from "react-toastify";
 
 function NewsAddForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const { filters, filterLoadingStatus } = useSelector((state) => state);
+  const { filters, filterLoadingStatus } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const newNews = { id: v4(), name, description, category };
-    request(`http://localhost:3001/news`, "POST", JSON.stringify(newNews))
-      .then(() => {
-        dispatch(newsCreated(newNews));
-        toast.success("A new news added successfully!", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      })
-      .catch((error) => console.log(error));
-
+    dispatch(fetchSubmit(request, newNews));
     setName("");
     setDescription("");
     setCategory("");
@@ -38,16 +29,13 @@ function NewsAddForm() {
     } else {
       if (filters && filters.length > 0) {
         return filters.map(({ name, label }) => {
-          if (name === "all") {
-            // eslint-disable-next-line array-callback-return
-            return;
-          } else {
-            return (
-              <option key={name} value={name}>
-                {label}
-              </option>
-            );
-          }
+          return name === "all" ? (
+            false
+          ) : (
+            <option key={name} value={name}>
+              {label}
+            </option>
+          );
         });
       }
     }
