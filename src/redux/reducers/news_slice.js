@@ -1,9 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import useHttp from "../../hook/useHttp";
 
 const initialState = {
   news: [],
   newsLoadingStatus: "sam",
 };
+
+export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
+  const { request } = useHttp();
+  return await request(`http://localhost:3001/news`);
+});
 
 const newsSlice = createSlice({
   name: "news",
@@ -26,15 +32,27 @@ const newsSlice = createSlice({
       state.news = state.news.filter((item) => item.id !== action.payload);
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchNews.pending, (state) => {
+        state.newsLoadingStatus = "loading";
+      })
+      .addCase(fetchNews.fulfilled, (state, action) => {
+        state.newsLoadingStatus = "sam";
+        state.news = action.payload;
+      })
+      .addCase(fetchNews.rejected, (state) => {
+        state.newsLoadingStatus = "error";
+      })
+      .addDefaultCase(() => {});
+  },
 });
 
-const { actions, reducer } = newsSlice;
-
-export default reducer;
+export default newsSlice.reducer;
 export const {
   newsFetching,
   newsFetched,
   newsFetchingError,
   newsCreated,
   newsDeleted,
-} = actions;
+} = newsSlice.actions;

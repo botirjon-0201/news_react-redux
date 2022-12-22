@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./style/news_list.css";
 import useHttp from "../hook/useHttp";
-import { fetchNews, fetchDelete } from "../redux/actions";
 import Spinner from "./Spinner";
 import Error from "./Error";
 import NewsListItem from "./NewsListItem";
+import { fetchDelete } from "../redux/actions";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./style/news_list.css";
 import { createSelector } from "reselect";
+import { fetchNews } from "../redux/reducers/news_slice";
 
 function NewsList() {
   const SelectFilteredNews = createSelector(
@@ -29,7 +30,7 @@ function NewsList() {
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(fetchNews(request));
+    dispatch(fetchNews());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,9 +62,7 @@ function NewsList() {
       </TransitionGroup>
     );
   };
-
   const element = renderNewsList(filteredNews);
-
   return { ...element };
 }
 

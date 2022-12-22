@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useHttp from "../hook/useHttp";
 import Spinner from "./Spinner";
 import Error from "./Error";
 import classNames from "classnames";
-import { fetchFilter } from "../redux/actions";
-import { activeFilterChanged } from "../redux/reducers/filter_slice";
+import {
+  activeFilterChanged,
+  fetchFilter,
+} from "../redux/reducers/filter_slice";
 
 function NewsFilter() {
   const { filters, filterLoadingStatus, activeFilter } = useSelector(
     (state) => state.filter
   );
   const dispatch = useDispatch();
-  const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(fetchFilter(request));
+    dispatch(fetchFilter());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,9 +46,7 @@ function NewsFilter() {
       })
     );
   };
-
   const elements = renderFilters(filters);
-
   return (
     <div className="card shadow-lg mt-4">
       <div className="card-body">

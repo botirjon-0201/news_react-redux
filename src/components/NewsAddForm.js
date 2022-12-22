@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSubmit } from "../redux/actions";
 import useHttp from "../hook/useHttp";
 import { v4 } from "uuid";
+import {
+  setCategory,
+  setDescription,
+  setName,
+} from "../redux/reducers/add_slice";
 
 function NewsAddForm() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const { name, description, category } = useSelector((state) => state.add);
   const { filters, filterLoadingStatus } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const { request } = useHttp();
@@ -16,9 +19,9 @@ function NewsAddForm() {
     e.preventDefault();
     const newNews = { id: v4(), name, description, category };
     dispatch(fetchSubmit(request, newNews));
-    setName("");
-    setDescription("");
-    setCategory("");
+    dispatch(setName(""));
+    dispatch(setDescription(""));
+    dispatch(setCategory(""));
   };
 
   const renderCategory = (filters, status) => {
@@ -55,7 +58,7 @@ function NewsAddForm() {
           className="form-control"
           placeholder="What is name of news?"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => dispatch(setName(e.target.value))}
         />
       </div>
       <div className="mb-3">
@@ -71,7 +74,7 @@ function NewsAddForm() {
           placeholder="What is your news about?"
           style={{ height: "120px" }}
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => dispatch(setDescription(e.target.value))}
         />
       </div>
       <div className="mb-3">
@@ -84,7 +87,7 @@ function NewsAddForm() {
           id="category"
           name="category"
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => dispatch(setCategory(e.target.value))}
         >
           <option value="defaultValue">Category of News...</option>
           {renderCategory(filters, filterLoadingStatus)}
