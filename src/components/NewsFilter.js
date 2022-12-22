@@ -4,7 +4,8 @@ import useHttp from "../hook/useHttp";
 import Spinner from "./Spinner";
 import Error from "./Error";
 import classNames from "classnames";
-import { activeFilterChanged, fetchFilter } from "../redux/actions";
+import { fetchFilter } from "../redux/actions";
+import { activeFilterChanged } from "../redux/reducers/filter_slice";
 
 function NewsFilter() {
   const { filters, filterLoadingStatus, activeFilter } = useSelector(
