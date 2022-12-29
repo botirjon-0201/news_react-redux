@@ -7,25 +7,13 @@ import Error from "./Error";
 import NewsListItem from "./NewsListItem";
 import { fetchDelete } from "../redux/actions";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { createSelector } from "reselect";
-import { fetchNews } from "../redux/reducers/news_slice";
+import { fetchNews, SelectFilteredNews } from "../redux/reducers/news_slice";
 
 function NewsList() {
-  const SelectFilteredNews = createSelector(
-    (state) => state.filter.activeFilter,
-    (state) => state.news.news,
-    (activeFilter, news) => {
-      return activeFilter === "all"
-        ? news
-        : news.filter((item) => item.category === activeFilter);
-    }
-  );
-
   const newsLoadingStatus = useSelector(
     (state) => state.news.newsLoadingStatus
   );
   const filteredNews = useSelector(SelectFilteredNews);
-
   const dispatch = useDispatch();
   const { request } = useHttp();
 

@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from "@reduxjs/toolkit";
 import useHttp from "../../hook/useHttp";
 
 const initialState = {
@@ -10,6 +14,16 @@ export const fetchNews = createAsyncThunk("news/fetchNews", async () => {
   const { request } = useHttp();
   return await request(`http://localhost:3001/news`);
 });
+
+export const SelectFilteredNews = createSelector(
+  (state) => state.filter.activeFilter,
+  (state) => state.news.news,
+  (activeFilter, news) => {
+    return activeFilter === "all"
+      ? news
+      : news.filter((item) => item.category === activeFilter);
+  }
+);
 
 const newsSlice = createSlice({
   name: "news",
