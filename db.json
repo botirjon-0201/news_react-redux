@@ -23,6 +23,12 @@
       "name": "Qatar World Cup",
       "description": "Morocco pulled off yet another World Cup shock, and it was Belgium's aging “Golden Generation” that took the hit this time.\nArgentina and France will met in the final next Sunday, 18.12.2022 year. Corvatia and Morocco will play 3rd places.",
       "category": "Sport News"
+    },
+    {
+      "id": "89ccfdd9-6de5-48b4-8e70-0176bbc6f7f1",
+      "name": "World Cup 2022",
+      "description": "Argentina was chemp with Messi in the final world cup",
+      "category": "Sport News"
     }
   ],
   "filters": [
