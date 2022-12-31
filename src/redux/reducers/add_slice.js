@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const [name, setName] = useState("");
-// const [description, setDescription] = useState("");
-// const [category, setCategory] = useState("");
-
 const initialState = {
   name: "",
   description: "",
